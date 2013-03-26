@@ -37,7 +37,7 @@ class Doctor(models.Model):
 	Doc_ID           = models.AutoField(primary_key=True,editable = False)
 	User_name        = models.ForeignKey(PmisUser, help_text = " Select a registered Doctor or Add a new Doctor",unique = True)
 	specialization   = models.ForeignKey(Specialization, null = True,blank = True,help_text = "select doctor's specialization")
-	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (024)8302345")
+	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (XXX)XXXXXXX")
 	sex              = models.CharField('Gender', choices =(("Male","Male"),("Female","Female"),("Others","Others") ),max_length = 7,blank =False,null =False)
 	address          = models.TextField(blank = True, null = True,help_text ="Please enter both residential and postal address")
 	date_Of_birth    = models.DateField(blank = True, null = True)
@@ -50,7 +50,7 @@ class Doctor(models.Model):
 		return self.address[:10]
  
 	def Full_name(self):
-		return "%s %s" %(self.User_name.first_name.upper(),self.User_name.last_name.upper())
+		return "%s %s [ %s ]" %(self.User_name.first_name.upper(),self.User_name.last_name.upper(),self.User_name.username.upper())
 
 	def __unicode__(self):
 		return '%s || %s  %s || %s' % (self.Doc_ID,self.User_name.first_name.upper(),self.User_name.last_name.upper(),self.specialization)
@@ -81,7 +81,7 @@ class Nurse(models.Model):
       
 	nurse_ID         = models.AutoField(primary_key=True,editable = False)
 	User_name        = models.ForeignKey(PmisUser, help_text = " Select a registered Nurse or Add a new Nurse",unique = True)
-	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (024)8302345")
+	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (XXX)XXXXXXX")
 	sex              = models.CharField('Gender', choices =(("Male","Male"),("Female","Female"),("Others","Others") ),max_length = 7)
 	address          = models.TextField(blank = True, null = True,help_text ="Please enter both residential and postal address")
 	date_Of_birth    = models.DateField(blank = True, null = True)
@@ -108,7 +108,7 @@ class Pharmacist(models.Model):
       
 	Pharmacist_ID    = models.AutoField(primary_key=True,editable = False)
 	User_name        = models.ForeignKey(PmisUser, help_text = " Select a registered Pharmacist or Add a new Pharmacist",unique = True)
-	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (024)8302345")
+	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (XXX)XXXXXXX")
 	sex              = models.CharField('Gender', choices =(("Male","Male"),("Female","Female"),("Others","Others") ),max_length = 7)
 	address          = models.TextField(blank = True, null = True,help_text ="Please enter both residential and postal address")
 	date_Of_birth    = models.DateField(blank = True, null = True)
@@ -132,7 +132,7 @@ class cashier(models.Model):
       
 	cashier_ID       = models.AutoField(primary_key=True,editable = False)
 	User_name        = models.ForeignKey(PmisUser, help_text = " Select a registered Cashier or Add a new Cashier",unique = True)
-	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (024)8302345")
+	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (XXX)XXXXXXX")
 	sex              = models.CharField('Gender', choices =(("Male","Male"),("Female","Female"),("Others","Others") ),max_length = 7)
 	address          = models.TextField(blank = True, null = True,help_text ="Please enter both residential and postal address")
 	date_Of_birth    = models.DateField(blank = True, null = True)
@@ -154,7 +154,7 @@ class clinical_Staff(models.Model):
       
 	clinical_Staff_ID    = models.AutoField(primary_key=True,editable = False)
 	User_name        = models.ForeignKey(PmisUser, help_text = " Select a registered Staff or Add a new Staff",unique = True)
-	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (024)8302345")
+	phone_number     = models.CharField(max_length = 15,blank = True, null = True,unique = True,help_text = "e.g: (XXX)XXXXXXX")
 	sex              = models.CharField('Gender', choices =(("Male","Male"),("Female","Female"),("Others","Others") ),max_length = 7)
 	address          = models.TextField(blank = True, null = True,help_text ="Please enter both residential and postal address")
 	date_Of_birth    = models.DateField(blank = True, null = True)
@@ -187,8 +187,8 @@ class DocAdmin(admin.ModelAdmin):
 	list_filter    = ('specialization','date_registered','date_updated')
 	ordering       = ('-date_updated',)
 	date_hierarchy = 'date_updated'
-	raw_id_fields  = ('User_name','specialization')
-      
+	raw_id_fields  = ('User_name',)
+        raw_horizontal_fields = ('specialization',)
 
 #Specialization Admin
 class SpecAdmin(admin.ModelAdmin):
