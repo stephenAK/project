@@ -36,7 +36,7 @@ class Doctor_reservation(models.Model):
 		(3, _("booked")),
 		
 	)
-	start_date    = models.DateField(_("Date"),help_text ="This designates the day of the week this appointment can be booked to") 
+	start_date    = models.DateField(_("Appointment Date"),help_text ="This designates the day of the week this appointment can be booked to") 
 	starting_time = models.TimeField(_("starting time"), help_text = "This designates the time for start of the appointment")
 	end_time      = models.TimeField(_("valid until"),help_text = "This indicates the time the appointment is supposed to end")
 	doctor        = models.ForeignKey(Doctor, verbose_name=_("medical Doctor"),help_text = "Select Doctor or add new Doctor")
@@ -116,7 +116,7 @@ class AppointmentInline(admin.TabularInline):
 class Patient_appointment_Admin(admin.ModelAdmin):
       list_display	 = ('patient_id','patient','date_created','appointment_date_','referrer_','doctor_','date_updated','has_reservation')
       list_filter 	 = ('doctor','patient','date_created','date_updated')
-      raw_id_fields	 = ('patient','doctor',)
+      raw_id_admin	 = ('patient','doctor',)
       readonly_fields    = ('referrer',)
 
 class Doctor_scheduleAdmin(admin.ModelAdmin):
@@ -128,9 +128,10 @@ class Doctor_scheduleAdmin(admin.ModelAdmin):
 class Doctor_reservation_Admin(admin.ModelAdmin):
 	list_display        = ('start_date','Day','starting_time','doctor', 'status','appointments')
 	readonly_fields     = ('booked_by',)
-	list_filter         = ('status', 'doctor', 'starting_time')
+	list_filter         = ('status','start_date')
 	ordering            = ('starting_time', 'doctor')
 	inlines             = [AppointmentInline]
+	date_hierarchy      = 'start_date'
 	search_fields       = ['^patient__User_name__first_name','^patient__User_name__last_name']
 	fieldsets           = (
 		(None, {"fields": ("doctor", "start_date","starting_time","end_time", "status")}),

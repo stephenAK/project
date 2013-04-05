@@ -63,6 +63,33 @@ class PatientGuardian(models.Model):
 		verbose_name_plural = "Guardian Details"
 		ordering 	    = ('patient','guardian_name')
 
+#model for the various billings in the Hospital
+class  bill_type(models.Model):
+       name = models.CharField(max_length = 20)
+       
+       def __unicode__(self):
+           return self.name.upper()
+           
+       class Meta:
+		verbose_name 	    = "Billing Type"
+		verbose_name_plural = "Billing types"
+           
+		
+class patient_bill(models.Model):
+      patient = models.ForeignKey(Patients_vital)
+      bill_type = models.ForeignKey(bill_type,max_length = 20)
+      mode_of_payment = models.CharField(choices = (("CASH","CASH"),("CHEQUE","CHEQUE"),("NHIS","NHIS")),max_length = 10)
+      is_paid = model.BooleanField(blank =  True, null = True,help_text = "Designates whether the patient has made payments.")#amount to be payment would be indicated by the cashier
+      
+      class Meta:
+		verbose_name 	    = "Patient Bill"
+		verbose_name_plural = "Patient Billings"
+		
+      def __unicode__(self):
+           return self.patient.upper()
+
+
+
 class Guardian_Admin(admin.ModelAdmin):
       list_display = ('set_name','patient','relation_to_guardian','guardian_phone')
       search_fields = ('guardian_name','relation_to_guardian')
@@ -74,13 +101,26 @@ class Patients_Admin(admin.ModelAdmin):
       search_fields = ['hospital_ID','^User_name__first_name','^User_name__last_name','Contact_Of_Next_Of_Kin']
       list_filter = ('City','date_registered','date_updated')
       ordering = ('-date_updated',)
-      date_hierarchy = 'date_updated'
+      date_hierarchy = 'date_registered'
       fieldsets = ( (None, {'fields':('User_name','phone_number','City','sex','Nationality')}),
                     ('Advanced details',{ 'classes':('collapse',),'fields':('age','postal_Address','Email','Contact_Of_Next_Of_Kin',)}),)
       list_per_page = 20
       raw_id_fields   = ('User_name',)
       readonly_fields = ('age',)
 
+class patient_bill_Admin(admin.ModelAdmin):
+      list_display = ('patient',' bill_type',' mode_of_payment','is_paid')
+      list_filter = ('mode_of_payment','is_paid')
+      raw_id_fields = ('patient',)
+      
+      
+class bill_type_Admin(admin.ModelAdmin):
+      list_display ('name')
+
+
+
 
 admin.site.register(Patients_vital,Patients_Admin)
 admin.site.register(PatientGuardian,Guardian_Admin)
+admin.site.register(bill_type,bill_type_Admin)
+admin.site.register(patient_bill,patient_bill_Admin)
