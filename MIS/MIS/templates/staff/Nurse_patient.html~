@@ -1,0 +1,41 @@
+{% extends "staff/nurse.html" %}
+{%block title%}<title>Patients </title> {%endblock title%}
+
+{% block content %}
+
+<div class=" container"    style = "margin-left:-30px; margin-top:20px;"> 
+<!--<ul class="breadcrumb" style  = " position:relative;">-->
+<table class ="table "> 
+
+  <div>
+     <tr>
+  <th><a  style  = " position:relative;margin-left:0px;">PATIENT ID </a></th>
+  <th><a style  = " position:relative;margin-left:0px;">FULL NAME</a></th>
+  <th><a  style  = " position:relative;margin-left:0px;">PHONE NUMBER</a></th>
+  <th><a  style  = " position:relative;margin-left:0px;">GENDER</a></th>
+  <th><a  style  = " position:relative;margin-left:0px;">AGE</a></th>
+  <th><a  style  = " position:relative;margin-left:0px;">DETAILS</a></th>
+  
+
+	</tr>
+		<tbody>
+			</div>
+  {% for patient in patients %}
+<tr>
+  <td><a href="/pmis/pat_details">{{patient.patient_id}}</a></td>
+  <td>{{patient.Full_name_}}</td>
+  <td>{{patient.phone_number}}</td>
+  <td>{{patient.sex}}</td>
+  <td>{{patient.age}}</td>
+  <td><a href="/pmis/pat_details" >View details</a> </td>
+  
+</tr>
+</p>
+
+{% endfor %}
+</tbody>
+</table>
+ </div> 
+{% endblock %}
+
+

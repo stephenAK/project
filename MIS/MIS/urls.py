@@ -5,6 +5,10 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+#REPORTS
+from model_report import report
+report.autodiscover()
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'MIS.views.home', name='home'),
@@ -14,6 +18,9 @@ urlpatterns = patterns('',
    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+   # url(r'', include('model_report.urls')),
+    url(r'^mis/', include('site_urls.urls')),
+    url(r'^pmis/', include('staff_urls.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root' : settings.STATIC_ROOT,}),

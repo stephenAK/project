@@ -1,0 +1,56 @@
+<!DOCTYPE html>  
+
+<html lang="en">
+		<head>   
+				<title></title>
+				
+				<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+				<meta name="keywords" content="" />
+      <meta name="description" content="" />
+				
+				
+		 <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css"/>
+		 <link rel="stylesheet" type="text/css"  href="/static/css/bootstrap-responsive.css"/>
+		
+		</head>
+   
+   
+   <body>   
+			
+			
+		
+	{% ifnotequal empty_cred '' %}
+													<div class="alert alert-error fade in" style=" position:; border-radius:20px; float:left; width:700px; height:120px; margin-top:0px; margin-bottom:0px; margin-left:5px;">
+																<a class="close" data-dismiss="alert" href="#my-alert">&times;</a>
+																			<h4 class="alert-heading" style="text-align:right;">Login Failure!</h4>
+																			<p style="text-align:right;">{{ empty_cred }}</p>
+													</div>
+	{% endifnotequal %}
+   <form class="" style="margin-left:400px;margin-top:200px;"action="." method="post">
+				<fieldset>
+							
+									{{ form.as_table }}
+
+			</fieldset>
+     <input class="btn btn-primary" type="submit" name="Submit" value="Login" />
+</form>
+
+ <script src="/static/js/jquery.js"></script>	
+	 <script src="/static/js/bootstrap.js"></script>
+	 <script src="/static/js/bootstrap-transition.js"></script>
+
+
+
+<script src="/static/js/bootstrap-collapse.js"></script>
+ 	 <script type="text/javascript">
+ 	 	$(function(){
+ 	 	$(".collapse").collapse();
+ 	 	})	
+ 	 	</script>
+
+
+</body>
+
+
+
+</html>

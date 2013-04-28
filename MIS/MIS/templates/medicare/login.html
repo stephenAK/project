@@ -1,0 +1,64 @@
+{% extends "medicare/index.html" %}
+
+
+{%block title%}<title>LOGIN</title> {%endblock title%}
+
+
+{% block content %}
+ 					<h2>OUR <span>CLIENT LOGIN</span></h2>
+        <div style="border-radius:20px; border:2px solid #ffffff; width:930px; height:200px; padding:5px;margin-top:-10px;" class="col_w300" >
+		
+        	
+    
+										{% ifnotequal empty_cred '' %}
+													<div class="alert alert-error fade in" style=" position:; border-radius:20px; float:left; width:700px; height:120px; margin-top:0px; margin-bottom:0px; margin-left:5px;">
+																<a class="close" data-dismiss="alert" href="#my-alert">&times;</a>
+																			<h4 class="alert-heading" style="text-align:right;">Login Failure!</h4>
+																			<p style="text-align:right;">{{ empty_cred }}</p>
+													</div>
+										{% endifnotequal %}
+
+										{% ifnotequal invalidMsg '' %}
+															<div class="alert alert-error fade in" style=" position:; border-radius:20px; float:left; width:700px; height:120px; margin-top:0px; margin-bottom:0px; margin-left:5px;">
+																	  <a class="close" data-dismiss="alert" href="#my-alert">&times;</a>
+																		<h4 class="alert-heading" style="text-align:right;">Login Failure!</h4>
+																			<p style="text-align:right;">{{ invalidMsg }}</p>
+															</div>
+										{% endifnotequal %}
+
+										{% ifnotequal notPatient ''%}
+													<div class="alert alert-info fade in" style=" position:; border-radius:20px; float:left; width:700px; height:120px; margin-top:0px; margin-bottom:0px; margin-left:5px;">
+																	<a class="close" data-dismiss="alert" href="#my-alert">&times;</a>
+																	<h4 class="alert-heading" style="text-align:right;">Notice!!</h4>
+																	<p style="text-align:right;">	{{notPatient}}</p>
+													</div>
+									{% endifnotequal%}
+
+
+				
+	           <div style="position:absolute;">
+									<form action="." method="post" style="margin-left:20px">
+												
+																{{ form.as_p }}
+
+												
+    														 <input class="btn btn-primary" type="submit" name="Submit" value="Login" />
+									</form>
+									</div>
+			
+
+
+            
+            	
+        </div>
+        
+       
+        
+    
+    	<div class="cleaner"></div>
+    </div>
+    
+	<div class="cleaner"></div>
+</div>
+</div>
+{%endblock%}

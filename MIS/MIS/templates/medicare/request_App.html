@@ -1,0 +1,87 @@
+{% extends "medicare/pat_portal.html" %}
+{%block title%}<title>Request Appointment </title> {%endblock title%}
+{% block content %}
+    
+    <div id="templatemo_content">
+    					
+        <div style=" position:relative; border-radius:20px; border:2px solid #ffffff; width:255px; height:500px; padding:5px;margin-top:-10px;" class="col_w300" >
+		
+            	<div style="position:relative;">
+									
+							         	<fieldset>
+                          
+                             <legend><b style="">Quick Links</b></legend>
+                              	<div class="left_menu">
+                              	
+                              	<ul class="nav nav-pills nav-stacked">
+       
+       <li><a href="/mis/pat_portal/" ><img src="/static/" width="30" height="30" /> &nbsp Profile</a></li>
+       <li><a  href="/mis/req_App/" id="left_current"><img src="/static/" width="30" height="30"/> &nbsp Appointment Request</a></li>
+  		
+  			<li><a href="/mis/scheduled_App/"><img src="/static/" width="30" height="30"/> &nbsp Scheduled App</a></li>
+  			<li><a href="/mis/past_App/"><img src="/static/" width="30" height="30"/> &nbsp Past Appointments</a></li>
+  			</ul>
+  
+  																					</div>
+  	                          
+	                   </fieldset>
+								
+								
+					      </div>
+			
+
+
+            
+            	
+             </div>
+             
+        <!-- inner content-->     
+
+
+  
+             
+             
+             <div style="overflow:auto; background-color:#ffffff; position:absolute; border-radius:20px; border:2px solid #3bb9ff; width:610px; height:500px; padding:5px; margin-left:300px;margin-top:-10px;" class="col_w300">
+                             
+									
+												<table class="table table-striped table-bordered table-condensed">
+        <thead>
+
+          <tr>
+            <th>Date</th>
+            <th>TIME</th>
+            <th>SPECIALIZATION</th>
+            <th>DOCTOR</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+        {%for dr in docReserve%}
+          	<tr>
+            <td>{{dr.start_date}}</td>
+             <td>{{dr.starting_time}} &nbsp - &nbsp {{dr.end_time}}</td>
+             <td>{{dr.doctor.specialization}}</td>
+             <td>{{dr.doctor.Full_name}}</td>
+          	</tr>
+        {%endfor%}      
+   
+        </tbody>
+      </table>										
+									
+									
+									
+									
+                   
+             </div>
+        
+       
+        
+    
+    	<div class="cleaner"></div>
+    </div>
+    
+	<div class="cleaner"></div>
+</div>
+</div>
+ {% endblock %}
+ 

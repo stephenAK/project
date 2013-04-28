@@ -1,0 +1,32 @@
+{% extends "staff/nurse.html" %}
+
+{%block title%}<title>PATIENTS </title> {%endblock title%}
+
+
+{% block content %}
+<h3>SEARCH RESULTS ({{patient.count}}) Found</h3>
+
+ 
+<div id="demo" class="collapse in" style ="overflow:auto; width: 938px;"> … </div>
+
+<div class=" container-fluid"    style = "margin-left:-30px; width:800px;"> 
+
+{% for pat in patient %}
+<ul>
+<blockquote>
+
+	<a href="/pmis/pat_details/{{ pat.hospital_ID}}/True" target=""><h style="text-align:justify;" >{{pat}}</h></a><br/>
+	<p style="font-size:14px; text-align:justify;" >{{s.patient_id}}<a href="/pmis/pat_details/{{ pat.hospital_ID}}/True" target="" color='blue'>...view full details...</a></p>
+
+	<hr/>
+</blockquote>
+{% endfor %}
+</ul>
+</div>
+
+        
+        
+    
+
+
+{% endblock %}

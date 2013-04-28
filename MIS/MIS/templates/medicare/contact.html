@@ -1,0 +1,84 @@
+{% extends "medicare/index.html" %}
+{%block title%}<title>CONTACT US</title> {%endblock title%}
+{%block extrastyle%}<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />{%endblock%}
+
+{%block menu%}
+        <div id="templatemo_menu">
+            <ul>
+                <li><a href="/mis/home" >Home</a></li>
+                <li><a href="/mis/services">Services</a></li>
+                <li><a href="/mis/news">News</a></li>
+                <li><a href="/mis/aboutUs">About us</a></li>
+                <li><a href="/mis/contact" class="current">Contact</a></li>
+                {% ifnotequal user.username '' %}
+                
+                					<li><a href="/mis/pat_portal">My Portal</a></li>
+                				  <li><a href="/mis/logout">Logout</a></li>
+                	{% else %}
+                					<li><a href="/mis/login">Client Login</a></li>
+                	{% endifnotequal %}
+            </ul>    	
+        </div> <!-- end of templatemo_menu -->
+        {%endblock%}
+{%block content%}
+<h2>OUR <span>CONTACT</span></h2>
+        <div style="border-radius:20px; border:2px solid #ffffff; width:930px; height:600px; padding:5px;margin-top:-10px;" class="col_w300" >
+        
+        
+	
+		<div class="accordion" id="accordion2">
+            <div class="accordion-group">
+              <div class="accordion-heading" style="font-size:24px; text-align:center;">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                  Contact
+                </a>
+              </div>
+              <div id="collapseOne" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <p>1st Floor ICT Directorate <br/>
+                  University of Ghana, Legon</p><br/>
+                  Email : <a href="maito:info@alertbunny.com">info@alertbunny.com</a><br/>
+                  Hotline : +233 302 56 78, &nbsp +233 24 786 7789<br/>
+                  <a href="bulk/base_login">http://www.alertbunny.com</a>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading" style="font-size:24px; text-align:center;">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                  Contact Form               
+                   </a>
+              </div>
+              <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <form class="">
+							
+								
+  							<input  type="text" class="span3" placeholder="		Enter Name"/><br/>
+							<input  type="text" class="span3" placeholder="    		Enter Email"/><br/>
+							<input  type="text" class="span3" placeholder="		Enter Subject"/><br/>		
+							<textarea style=" height:200px; width:400px;" type="text" placeholder="Type your message here..."></textarea><br/>
+							<button style="" class="btn btn-warning btn-large" type="submit" value=""><b>Send Email</b></button>
+			
+					</form>
+                </div>
+              </div>
+            </div>
+            
+            
+            
+            
+             
+          </div>
+
+		
+  		
+
+        </div>
+        <div class="cleaner"></div>
+        </div>
+    
+	<div class="cleaner"></div>
+</div>
+</div>
+{%endblock%}

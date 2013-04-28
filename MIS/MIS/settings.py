@@ -119,6 +119,7 @@ WSGI_APPLICATION = 'MIS.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, 'templates'),
+   # os.path.join(SITE_ROOT, 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -128,21 +129,25 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    #'django.contrib.sites',
-    'django.contrib.messages',
+    #django.contrib.sites',
+    #'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
-    'django.contrib.admindocs',
+    #'django.contrib.admindocs',
     'patient',
     'staff',
-    'pmis_user',
-    'sorl.thumbnail',
+   # 'sorl.thumbnail',
     'south',
     'countries',
     'appointment',
-    'site_content'
+    'site_content',
+    'site_urls',
+    'patient_billings',
+    #'cal',
+    'django_extensions',
+    'model_report',
     #'schedule',
    
 )

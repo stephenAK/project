@@ -1,0 +1,292 @@
+<!DOCTYPE html>  
+
+<html lang="en">
+		<head>   
+			{%block title %}	<title> NURSE PORTAL</title> {% endblock title %}
+				
+				<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+				<meta name="keywords" content="" />
+      <meta name="description" content="" />
+				
+				
+		 <link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css"/>
+		 <link rel="stylesheet" type="text/css"  href="/static/css/bootstrap-responsive.css"/>
+		
+		</head>
+   
+  <style>
+  		.hr { height:5; width:938px;  border-top:6px solid black; margin-left:-50px;}
+  		.hr hr { display:none; }
+	</style>
+    
+ 
+			
+			{% block menu %}
+			<div  class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">PMIS PORTAL</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class=""><a href="/pmis/nurse">HOME</a></li>
+            <li><a href="/pmis/nurse_pat">PATIENTS</a></li>
+            <li><a href="/pmis/nurse_ref">REFERALS</a></li>
+           <!-- <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Nav header</li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#"></a></li>
+              </ul>
+            </li>-->
+          </ul>
+          <form class="navbar-search pull-left" action="/pmis/patient/search/" method="GET">
+          
+            <input type="text" class="form-search" placeholder="Search Patient" name="search_item">
+            
+          </form>
+          <ul class="nav pull-right">
+            <li><a href="#">Welcome {{user.username}}</a></li>
+            <li class="divider-vertical"></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dashboard <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/admin" target ="blank">Dashboard</a></li>
+                
+                <li class="divider"></li>
+                <li><a href="#">logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+  </div><!-- /navbar -->
+  
+  
+  
+   <div style="margin-top:100px; width:938px; margin-left:-2px;" class=hr><hr/></div>
+  {% endblock %}
+  <body>
+  
+  {% block content %}
+  
+  
+  
+  <div class="container-fluid" style="margin-top :100px; ">
+  		<div class="row-fluid">
+    			
+      			<!--Sidebar content-->
+
+<div style="overflow:auto;width:930px; height:340px; border:3px solid black; border-radius:20px; background-color:white; margin-left:-20px; margin-top:-35px;">
+	
+		<div class="accordion" id="accordion2">
+           
+            <div class="accordion-group">
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <h class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                  <a style ="margin-left:300px;"><strong>YOUR PATIENTS</strong></a>
+                </h>
+              </div>
+              <div id="collapseTwo" class="accordion-body collapse ">
+                <div class="accordion-inner">
+                
+                 
+                  <table class="table table-striped table-bordered table-condensed" style = "">
+                   <div>
+     <tr>
+  <th><a  style  = " position:relative;margin-left:0px;">TODAY'S DATA</a></th>
+  <th><a  style  = " position:relative;margin-left:0px;">MALE</a></th>
+  <th><a  style  = " position:relative;margin-left:0px;">FEMALE</a></th>
+  <th><a  style  = " position:relative;margin-left:0px;">TOTAL</a></th>
+  
+
+	</tr>
+                     					 <tbody>
+      									
+      									<tr>
+        									<th><h><span class="muted"> </span> IMMUNISATION: &nbsp</h></th>
+            									<th><h><span class="muted">  </span>{{MaleSeenToday.count}}&nbsp</h></th>
+        									<th><h><span class="muted">  </span> {{FemaleSeenToday.count}}&nbsp</h></th>
+        									<th><h><span class="muted">  </span>{{numberSeenToday.count}}&nbsp</h></th>
+                    
+      									</tr>
+      									<tr>
+        									<th><h><span class="muted"> </span> VITALS: &nbsp</h></th>
+        									
+        									<th><h><span class="muted">  </span>seen today&nbsp</h></th>
+        									<th><h><span class="muted">  </span> male(s)&nbsp</h></th>
+        									<th><h><span class="muted">  </span>female(s)&nbsp</h></th>
+                      
+      									</tr>
+      									<tr>
+        								<th><h><span class="muted"> </span> DEMOGRAPHIC DATA: &nbsp</h></th>
+        									
+        									<th><h><span class="muted">  </span>seen today&nbsp</h></th>
+        									<th><h><span class="muted">  </span> male(s)&nbsp</h></th>
+        									<th><h><span class="muted">  </span>female(s)&nbsp</h></th>
+                    
+      									</tr>
+      									
+    								</tbody>
+  							</table>
+               
+               
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <h class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                 <a style ="margin-left:240px;"><strong>GENERAL OVERVIEW ( ON PATIENT VITALS )</strong></a>
+                </h>
+              </div>
+              <div id="collapseThree" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                 
+                 <table class="table table-striped table-bordered table-condensed" style = "">
+                   <div>
+     
+                 <tbody>
+      									
+      									
+      									<tr>
+        									<th><h><span class="muted">Temperature:  </span>Percent of Patient Above Average {{percent}} % </h></th>
+        									<th><h>{{aboveAvg.count}}&nbsp </h><span class="muted">out of</span>&nbsp{{totalNumber.count}}<h></h> </th>
+        									
+      									</tr>
+      									<tr>
+        								<th><h><span class="muted"> </span>&nbsp</h></th>
+        									<th><h><span class="muted">  </span>&nbsp</h></th>
+        									
+        									
+      									</tr>
+      									
+      									
+      									<td><p><span class="muted"> B.P : </span> NUMBER ABOVE AVERAGE::&nbsp</p></td>
+        									<th><h><span class="muted">  </span> #&nbsp</h></th>
+        									
+        									
+      									</tr>
+      									<tr>
+        								<th><h><span class="muted"> </span>&nbsp</h></th>
+        									<th><h><span class="muted">  </span>&nbsp</h></th>
+        									
+        									
+      									</tr>
+      									</tr>
+      									<td><p><span class="muted"> Pulse</span> NUMBER ABOVE AVERAGE::&nbsp</p></td>
+        									<th><h><span class="muted">  </span> #&nbsp</h></th>
+        									
+        									
+      									</tr>
+      									<tr>
+        								<th><h><span class="muted"> </span>&nbsp</h></th>
+        									<th><h><span class="muted">  </span>&nbsp</h></th>
+        									
+        									
+      									</tr>
+      									</tr>
+      									<td><p><span class="muted"> Breath Rate: </span> NUMBER ABOVE AVERAGE::&nbsp</p></td>
+        									<th><h><span class="muted">  </span> #&nbsp</h></th>
+        									
+        									
+      									</tr>
+    								</tbody>
+  							</table>
+               
+              </div>  
+              </div>
+                 
+                
+              
+            </div>
+             
+             
+           
+             
+          
+
+		
+  		
+  </div>	
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+ 
+  
+  
+  {% endblock %}
+
+
+
+ <script src="/static/js/jquery.js"></script>	
+	 <script src="/static/js/bootstrap.js"></script>
+	 <script src="/static/js/bootstrap-transition.js"></script>
+         <script src="/static/js/bootstrap-tab.js"></script>
+   <script type="text/javascript">
+    $(function (){
+    $('#myTab').tab('show')
+
+    </script>
+
+<script src="/static/js/bootstrap-collapse.js"></script>
+ 	 <script type="text/javascript">
+ 	 	$(function(){
+ 	 	$(".collapse").collapse();
+ 	 	})	
+ 	 	</script>
+
+
+	 <script src="/static/js/bootstrap-transition.js"></script>
+	 <script src="/static/js/bootstrap-alert.js"></script>
+		<script type="text/javascript">
+ 		 $(function(){
+     	 $(".alert").alert();
+ 	 })
+ 	 </script>
+ 	 
+ 	 <script src="/static/js/bootstrap-modal.js"></script>
+ 	 <script type="text/javascript">
+ 	 	$(function(){
+ 	 	$('#myModal').modal('show');
+ 	 	
+ 	 	})	
+ 	 	</script>
+ 	 	
+ 	 	 <script src="/static/js/bootstrap-popover.js"></script>
+ 	 <script type="text/javascript">
+ 	 	$(function(){
+ 	 	$('.example').popover(options);
+ 	 	})	
+ 	 	</script>
+ 	 	
+ 	 	 
+
+
+</body>
+
+
+
+</html>

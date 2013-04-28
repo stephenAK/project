@@ -1,0 +1,116 @@
+{% extends "staff/nurse.html" %}
+{%block title%}<title>REFERRALS </title> {%endblock title%}
+
+{% block content %}
+<ul id="tab" class="nav nav-tabs"style = "width:938px;">
+            <li class="active"><a href="#today" data-toggle="tab">Referrals today</a></li>
+            <li class=""><a href="#past" data-toggle="tab">Past referrals</a></li>
+             <li class=""><a href="#new" data-toggle="tab">Add new referal</a></li>
+          </ul>
+
+<div id="myTabContent" class="tab-content">
+            <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="today">
+             
+              <table class="table table-striped table-bordered table-condensed" style = "width:938px;">
+                     					 <thead>
+                       						 <tr>
+                              
+                               				 <th> <a  style  = " position:relative;margin-left:10px;"><h>DOCTOR </h> </a></th>
+                                   			<th><a  style  = " position:relative;margin-left:10px;"><h>SPECIALIZATION</h></a> </th>
+                                         		 <th><a  style  = " position:relative;margin-left:10px;"><h>PATIENT</h></a> </th>
+                                         		  <th><a  style  = " position:relative;margin-left:10px;"><h>REMARKS</h></a> </th>
+                                         		  <th><a  style  = " position:relative;margin-left:10px;"><h>DATE AND TIME</h></a> </th>
+						
+                                             			</tr>
+                                                         </thead>
+
+
+								<tbody>
+      									 {% for pat_ref in pat_referral %}
+      									<tr>
+        									<th><h><span class="muted"></span><small>{{pat_ref.doctor.Full_name}}&nbsp</h></th>
+        									<th><h><span class="muted"></span>{{pat_ref.doctor.specialization}}&nbsp</h></th>
+        									<th><h><span class="muted"> </span>{{pat_ref.patient}}&nbsp</h></th>
+        									<th><h><span class="muted"> </span>{{pat_ref.comment}}&nbsp</h></th>
+        									 <th><h><span class="muted"> </span>{{pat_ref.date_created}}&nbsp</h></th>
+      									</tr>
+      									{% endfor %}	
+    								</tbody>
+  							</table>
+  							
+            </div>
+            <div class="tab-pane fade"  id="past">
+           
+            
+            <table class="table table-striped table-bordered table-condensed" style = "width:938px;">
+                     					 <thead>
+                       						 <tr>
+                              
+                               				 <th> <a  style  = " position:relative;margin-left:10px;"><h>DOCTOR </h> </a></th>
+                                   			<th><a  style  = " position:relative;margin-left:10px;"><h>SPECIALISATION</h></a> </th>
+                                         		 <th><a  style  = " position:relative;margin-left:10px;"><h>PATIENT</h></a> </th>
+                                         		  <th><a  style  = " position:relative;margin-left:10px;"><h>REMARKS</h></a> </th>
+                                         		  <th><a  style  = " position:relative;margin-left:10px;"><h>DATE AND TIME</h></a> </th>
+						
+                                             			</tr>
+                                                         </thead>
+
+
+								<tbody>
+      									
+      									{% for pat_ref_past in pat_ref_past %}
+      									<tr>
+        									<th><h><span class="muted"></span>{{pat_ref_past.doctor.Full_name}} &nbsp</h></th>
+        									<th><h><span class="muted"></span>{{pat_ref_past.doctor.specialization}}&nbsp</h></th>
+        									<th><h><span class="muted"> </span>{{pat_ref_past.patient}}&nbsp</h></th>
+        									<th><h><span class="muted"> </span>{{pat_ref_past.comment}}&nbsp</h></th>
+        									 <th><h><span class="muted"> </span>{{pat_ref_past.date_created}}&nbsp</h></th>
+      									</tr>
+      									{% endfor %}	
+      									
+    								</tbody>
+  							</table>
+  							
+            </div>
+            
+            <div class="tab-pane fade"  id="new">
+           
+            
+            <form method = "post" class = "form-outline" action ="."> 
+                <table>
+                {% for f in rForm  %}
+                  <tr><td>{{f.name}}</td> <td>{{f}}</td></tr>
+                 {%endfor%}
+                
+                </table>
+               
+             
+               <button type = "submit"  class="btn btn-primary btn-large" >Save</button>
+             </form>
+  							
+            </div>
+  	
+  	
+  		
+            
+           
+          
+          
+            
+            
+            
+                     					
+      									
+            
+                          
+            
+            
+            
+            
+                     					
+      									
+            </div>
+          </div>
+          <div style="margin-top:0px;margin-bottom:20px;text-align:right; margin-left:0px;" class=hr><hr/></div>
+{% endblock %}
